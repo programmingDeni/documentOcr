@@ -1,0 +1,10 @@
+/* Mobile Layout Overrides */
+@media (max-width: 768px) {
+  .pageWrapper {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .pageContent {
+    gap: var(--spacing-sm);
+  }
+}

@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+pydantic-settings
+python-multipart
+pytesseract
+Pillow
+pdf2image
+requests

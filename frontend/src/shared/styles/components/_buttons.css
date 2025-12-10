@@ -1,0 +1,244 @@
+/**
+ * Button Base Styles
+ * Einheitliche Button-Styles für die gesamte App
+ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  font-family: inherit;
+  line-height: 1;
+  text-decoration: none;
+  border: var(--border-width-thin) solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-bg), var(--transition-border),
+    var(--transition-color);
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   VARIANTS
+   ======================================== */
+
+/* Primary */
+.btn--primary {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+/* Success */
+.btn--success {
+  background: var(--color-success);
+  color: white;
+  border-color: var(--color-success);
+}
+
+.btn--success:hover:not(:disabled) {
+  background: var(--color-success-hover);
+  border-color: var(--color-success-hover);
+}
+
+/* Danger */
+.btn--danger {
+  background: var(--color-danger);
+  color: white;
+  border-color: var(--color-danger);
+}
+
+.btn--danger:hover:not(:disabled) {
+  background: var(--color-danger-hover);
+  border-color: var(--color-danger-hover);
+}
+
+/* Secondary (Outline) */
+.btn--secondary {
+  background: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+}
+
+.btn--secondary:hover:not(:disabled) {
+  background: var(--color-bg-tertiary);
+}
+
+/* Ghost (No Background) */
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text-primary);
+  border-color: transparent;
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--color-bg-tertiary);
+}
+
+/* Outline Variants */
+.btn--outline-primary {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn--outline-primary:hover:not(:disabled) {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn--outline-danger {
+  background: transparent;
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+.btn--outline-danger:hover:not(:disabled) {
+  background: var(--color-danger);
+  color: white;
+}
+
+/* ========================================
+   SIZES
+   ======================================== */
+
+.btn--sm {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-xs);
+}
+
+.btn--lg {
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-md);
+}
+
+/* ========================================
+   MODIFIERS
+   ======================================== */
+
+/* Full Width */
+.btn--block {
+  width: 100%;
+}
+
+/* Icon Only */
+.btn--icon {
+  padding: var(--spacing-sm);
+}
+
+.btn--icon.btn--sm {
+  padding: var(--spacing-xs);
+}
+
+.btn--icon.btn--lg {
+  padding: var(--spacing-md);
+}
+
+/* Standard Width für Text-Buttons */
+.btn--fixed {
+  min-width: 180px; /* oder dein gewünschter Wert */
+}
+
+.btn--fixed-sm {
+  min-width: 120px;
+}
+
+.btn--fixed-lg {
+  min-width: 240px;
+}
+
+/* ========================================
+   BUTTON GROUP
+   ======================================== */
+
+/**
+ * Container für zusammenhängende Buttons (z.B. Toggle-Gruppen)
+ * Buttons werden ohne Gap aneinandergereiht mit abgerundeten Ecken nur außen
+ */
+.btn-group {
+  display: inline-flex;
+}
+
+.btn-group > .btn {
+  border-radius: 0;
+  /* Borders überlappen lassen statt entfernen */
+  margin-left: -1px;
+}
+
+.btn-group > .btn:first-child {
+  margin-left: 0;
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.btn-group > .btn:last-child {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+/* Active Button über allen anderen */
+.btn-group > .btn--active,
+.btn-group > .btn:hover {
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+   BUTTON GROUP VERTICAL
+   ======================================== */
+
+/**
+ * Vertikale Button-Group (Buttons untereinander)
+ */
+.btn-group--vertical {
+  flex-direction: column;
+}
+
+.btn-group--vertical > .btn {
+  margin-left: 0;
+  margin-top: -1px;
+}
+
+.btn-group--vertical > .btn:first-child {
+  margin-top: 0;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.btn-group--vertical > .btn:last-child {
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+/* ========================================
+   STATES
+   ======================================== */
+
+/**
+ * Active/Selected State für Toggle-Buttons
+ * Überschreibt andere Varianten wenn aktiv
+ */
+.btn--active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.btn--active:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
