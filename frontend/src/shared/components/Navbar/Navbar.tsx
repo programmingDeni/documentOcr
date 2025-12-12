@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import reactLogo from "../../assets/react.svg";
+import reactLogo from "../../../assets/react.svg";
 import styles from "./Navbar.module.css";
 
 export default function Navbar() {

@@ -2,7 +2,7 @@ import { UploadDocumentUI } from "./UploadDocumentUI";
 import {
   useUploadDocument,
   useUploadDocumentLLM,
-} from "../../queries/documentQueries";
+} from "../../../queries/documentQueries";
 import { useState } from "react";
 import type { Document, UploadedDocument } from "../../types/Document";
 import type { OcrMethod } from "../../types/OcrMethod";

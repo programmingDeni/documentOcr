@@ -1,4 +1,4 @@
-import { Button } from "../../shared/GenericButton";
+import { Button } from "../../GenericButton";
 import { RichTextEditor } from "../RichTextEditor/RichTextEditor";
 
 interface UploadedDocumentUiProps {
@@ -9,7 +9,7 @@ interface UploadedDocumentUiProps {
   saveDocumentAs: () => void;
 }
 
-export function UploadedDocumentUi(props: UploadedDocumentUiProps) {
+export function OcrUploadedDocumentUi(props: UploadedDocumentUiProps) {
   const { previewUrl, extractedText, onTextChange, onReset, saveDocumentAs } =
     props;
 

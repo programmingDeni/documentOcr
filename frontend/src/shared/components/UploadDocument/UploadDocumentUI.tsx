@@ -1,5 +1,5 @@
 import { useRef, useState, type DragEvent, type ChangeEvent } from "react";
-import { UploadedDocumentUi } from "../UploadedDocument/UploadedDocumentUi";
+import { OcrUploadedDocumentUi } from "../UploadedDocument/OcrUploadedDocumentUi";
 import type { OcrMethod } from "../../types/OcrMethod";
 
 interface UploadDocumentUIProps {
@@ -58,7 +58,7 @@ export function UploadDocumentUI({
   return (
     <div className="pageContent">
       {previewUrl ? (
-        <UploadedDocumentUi
+        <OcrUploadedDocumentUi
           previewUrl={previewUrl}
           extractedText={extractedText!}
           onTextChange={onTextChange!}
