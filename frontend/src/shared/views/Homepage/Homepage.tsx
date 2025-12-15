@@ -1,11 +1,13 @@
 //components
 import { Button } from "../../GenericButton";
+import { FileUploadView } from "../../components/FileUpload";
 import { RecentDocumentsView } from "../../components/RecentDocuments";
 
 //views
 import { UploadDocumentView } from "../../components/UploadDocument";
 
 export function Homepage() {
+
   return (
     <div className="pageWrapper">
       <div className="pageHeader">
@@ -26,7 +28,10 @@ export function Homepage() {
           </div>
         </div>
         <div className="pageSection">
-          <RecentDocumentsView />
+          <div className="stack stack--md">
+            <RecentDocumentsView />
+            <FileUploadView />
+          </div>
         </div>
       </div>
     </div>

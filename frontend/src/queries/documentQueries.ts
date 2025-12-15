@@ -24,6 +24,22 @@ export const useDocument = (id: string) => {
   });
 };
 
+export const useUploadDigitalDocument = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (file: File) => {
+      const formData = new FormData();
+      formData.append("file", file);
+      const { data } = await axios.post(`${API_URL}/upload/digital`, formData);
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["documents"] });
+    }
+  })
+}
+
 // Dokument hochladen
 export const useUploadDocument = () => {
   const queryClient = useQueryClient();

@@ -4,9 +4,9 @@ services:
   db:
     image: postgres:16
     environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: documentocr
+      POSTGRES_USER: ${POSTGRES_USER:-user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_DB:-documentocr}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
@@ -27,7 +27,8 @@ services:
       - ./backend:/app
       - uploads:/app/uploads
     environment:
-      DATABASE_URL: postgresql://user:password@db:5432/documentocr
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      OPENROUTER_API_KEY_AMAZON: ${OPENROUTER_API_KEY_AMAZON:-your_openrouter_api_key_here}
     depends_on:
       db:
         condition: service_healthy

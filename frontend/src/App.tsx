@@ -7,6 +7,9 @@ import Navbar from "./shared/components/Navbar";
 //views
 import { Homepage } from "./shared/views/Homepage";
 import { OcrView } from "./features/ocr/views/OcrView";
+//semantic search
+import { SemanticSearchLandingPageView } from "./features/semanticSearch/views/SemanticSearchLandingPage";
+import { SemanticSearchView as SemanticSearchPage } from "./features/semanticSearch/views/SemanticSearchPage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -18,7 +21,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/ocr" element={<OcrView />} />
-            <Route path="/search" element={<OcrView />} />
+            <Route path="/search" element={<SemanticSearchLandingPageView />} />
+            <Route path="/search/:docId" element={<SemanticSearchPage/>} />
           </Routes>
         </Router>
       </QueryClientProvider>
