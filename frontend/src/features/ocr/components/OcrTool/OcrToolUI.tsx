@@ -1,5 +1,4 @@
 import { FileUploadView } from "../../../../shared/components/FileUpload";
-import { OcrUploadedDocumentUi } from "../../../../shared/components/UploadedDocument/OcrUploadedDocumentUi";
 import type { OcrMethod } from "../../../../shared/types/OcrMethod";
 
 interface OcrToolUIProps {
@@ -11,18 +10,8 @@ interface OcrToolUIProps {
   onFileSelected: (file: File) => void;
   /** Ladezustand während OCR-Verarbeitung */
   isProcessing: boolean;
-  /** Fehlermeldung */
+  /** ein Fehler beim Laden des Dokuments */
   error?: string;
-  /** Preview URL des hochgeladenen Dokuments */
-  previewUrl?: string;
-  /** Extrahierter Text */
-  extractedText: string;
-  /** Callback zum Ändern des Texts */
-  onTextChange: (text: string) => void;
-  /** Callback zum Zurücksetzen */
-  onReset: () => void;
-  /** Callback zum Speichern */
-  onSave: () => void;
 }
 
 /**
@@ -35,30 +24,15 @@ export function OcrToolUI({
   onFileSelected,
   isProcessing,
   error,
-  previewUrl,
-  extractedText,
-  onTextChange,
-  onReset,
-  onSave,
 }: OcrToolUIProps) {
-  // Nach OCR: Ergebnis anzeigen
-  if (previewUrl) {
-    return (
-      <OcrUploadedDocumentUi
-        previewUrl={previewUrl}
-        extractedText={extractedText}
-        onTextChange={onTextChange}
-        onReset={onReset}
-        saveDocumentAs={onSave}
-      />
-    );
-  }
-
   // Vor OCR: Upload-Form anzeigen
   return (
     <div className="container container--narrow">
-      <div className="row row--between" style={{ marginBottom: "1rem" }}>
-        <h1 className="pageHeader__title">OCR Tool</h1>
+      <div
+        className="row row--between"
+        style={{ marginBottom: "1rem", marginTop: "1rem" }}
+      >
+        <h1 className="pageHeader__subtitle">OCR Tool</h1>
         <select
           value={ocrMethod}
           onChange={(e) => onOcrMethodChange(e.target.value as OcrMethod)}

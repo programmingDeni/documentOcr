@@ -12,6 +12,8 @@ from app.routers import documents
 from app.database import Base, engine
 
 # DB aufsetzen
+if settings.DB_DROP_ON_START:
+    Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
 
 # FastAPI App initialisieren

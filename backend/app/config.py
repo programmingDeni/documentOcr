@@ -4,8 +4,7 @@ Lädt Einstellungen aus Environment Variables
 """
 
 from pydantic_settings import BaseSettings
-
-
+import os
 
 class Settings(BaseSettings):
     """Application Settings mit Pydantic"""
@@ -25,6 +24,9 @@ class Settings(BaseSettings):
 
     # OpenRouter wird aus .env geladen
     OPENROUTER_API_KEY_AMAZON: str = ""
+
+    # DB restart ? 
+    DB_DROP_ON_START: bool = os.getenv("DB_DROP_ON_START", "false").lower() == "true"
     
     class Config:
         env_file = ".env"

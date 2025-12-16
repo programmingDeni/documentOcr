@@ -1,9 +1,8 @@
 //components
-import { Button } from "../../GenericButton";
+import Button from "../../Buttons/GenericButton";
 import { RecentDocumentsView } from "../../components/RecentDocuments";
 
 //views
-import { UploadDocumentView } from "../../components/UploadDocument";
 
 export function Homepage() {
   return (
@@ -16,17 +15,14 @@ export function Homepage() {
       </div>
       <div className="pageContent">
         <div className="pageSection">
-          <div className="stack stack--md">
-            <Button to="/ocr" className="btn btn--primary">
+          <div className="row row--md row--start">
+            <Button to="/ocr" className="btn btn--secondary">
               Document OCR{" "}
             </Button>
-            <Button to="/search" className="btn btn--primary">
+            <Button to="/search" className="btn btn--secondary">
               Semantic Search
             </Button>
           </div>
-        </div>
-        <div className="pageSection">
-          <RecentDocumentsView />
         </div>
       </div>
     </div>

@@ -65,3 +65,18 @@
     --color-border-light: rgba(0, 0, 0, 0.1);
   }
 }
+
+/* Manual theme override via data-attribute */
+html[data-theme="light"] {
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8f9fa;
+  --color-bg-tertiary: #e9ecef;
+  --color-bg-elevated: #ffffff;
+
+  --color-text-primary: #213547;
+  --color-text-secondary: #495057;
+  --color-text-muted: #6c757d;
+
+  --color-border: #e0e0e0;
+  --color-border-light: rgba(0, 0, 0, 0.1);
+}

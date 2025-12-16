@@ -1,10 +1,10 @@
 from uuid import UUID
 from typing import List
-from fastapi import APIRouter, Depends, UploadFile, File
+from fastapi import APIRouter, Depends, UploadFile, File, Response
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.services.document_service import DocumentService
-from app.schemas.document import DocumentResponse
+from app.schemas.document import DocumentResponse, DocumentUpdate
 
 router = APIRouter()
 
@@ -22,7 +22,10 @@ async def upload_document(
     file: UploadFile = File(...),
     service: DocumentService = Depends(get_document_service)
 ):
-    """Lädt ein Dokument hoch."""
+    """
+    Lädt ein Dokument hoch und führt OCR durch.
+    Falls das Dokument bereits existiert (gleicher Inhalt), wird das existierende zurückgegeben.
+    """
     return await service.upload_document(file, ocr_method="tesseract")
 
 @router.post("/upload/llm", response_model=DocumentResponse)
@@ -30,7 +33,10 @@ async def upload_document_llm(
     file: UploadFile = File(...),
     service: DocumentService = Depends(get_document_service)
 ):
-    """Lädt ein Dokument hoch (LLM OCR)."""
+    """
+    Lädt ein Dokument hoch und führt LLM-OCR durch.
+    Falls das Dokument bereits existiert (gleicher Inhalt), wird das existierende zurückgegeben.
+    """
     return await service.upload_document(file, ocr_method="llm")
 
 @router.get("/{document_id}", response_model=DocumentResponse)
@@ -40,6 +46,36 @@ def get_document(
 ):
     """Holt ein einzelnes Dokument."""
     return service.get_document(document_id)
+
+@router.get("/{document_id}/image")
+def get_document_image(
+    document_id: UUID,
+    service: DocumentService = Depends(get_document_service)
+):
+    """Gibt das Dokument-Bild zurück."""
+    document = service.get_document(document_id)
+    return Response(
+        content=document.content,  # Die Bytes aus der DB
+        media_type=document.content_type  # z.B. "image/png" oder "application/pdf"
+    )
+
+@router.put("/{document_id}", response_model=DocumentResponse)
+def update_document(
+    document_id: UUID,
+    update_data: DocumentUpdate,
+    service: DocumentService = Depends(get_document_service)
+):
+    """Aktualisiert den extrahierten Text eines Dokuments."""
+    return service.update_extracted_text(document_id, update_data.extracted_text)
+
+@router.put("/{document_id}/setOcrMethod", response_model=DocumentResponse)
+def update_ocr_method(
+    document_id: UUID,
+    ocr_method: str,
+    service: DocumentService = Depends(get_document_service)
+):
+    """Aktualisiert den OCR Method eines Dokuments."""
+    return service.update_ocr_method(document_id, ocr_method)
 
 @router.delete("/{document_id}")
 def delete_document(

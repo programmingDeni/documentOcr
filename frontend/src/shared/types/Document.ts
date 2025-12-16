@@ -5,6 +5,7 @@ interface Document {
   created_at: string;
   updated_at: string;
   extracted_text?: string;
+  ocrMethod?: string;
 }
 
 interface UploadedDocument {

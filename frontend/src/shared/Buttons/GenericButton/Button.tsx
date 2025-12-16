@@ -1,4 +1,4 @@
-import React, { type ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 type Props = (
@@ -10,7 +10,7 @@ type Props = (
   iconPosition?: "left" | "right"; // Standard: left
 };
 
-export function Button({
+export default function Button({
   className,
   icon,
   iconPosition = "left",
